@@ -19,7 +19,7 @@ for (let i = min; i <= max; i++) {
 }
 function getPattern(x) {
     if (!pattern[x]) {
-        for (let i = 0; i <= x; i++) {
+        for (let i = pattern.length - 1; i <= x; i++) {
             pattern[i] = (pattern[i - 1] ?? 0) + i;
         }
     }
