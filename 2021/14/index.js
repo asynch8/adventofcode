@@ -5,7 +5,7 @@ pairInsertion = Object.assign(...pairInsertion.split('\r\n').map((e) => {
     return { [split[0]]: split[1] };
 }))
 
-const stepsToRun = 40;
+const stepsToRun = 10;
 for (let i = 0; i < stepsToRun; i++) {
     let toInsert = [];
     const startedAt = new Date();

@@ -1,0 +1,160 @@
+NNCB
+
+CH -> B
+HH -> N
+CB -> H
+NH -> C
+HB -> C
+HC -> B
+HN -> C
+NN -> C
+BH -> H
+NC -> B
+NB -> B
+BN -> B
+BB -> N
+BC -> B
+CC -> N
+CN -> C
+
+
+N N C B
+ C B 
+
+
+Extract repeating patterns
+pairs = a, b, c
+outputValue = x, y
+if (
+    a[0] === x && 
+    a[1] === y &&
+    outputValue[a] === x && 
+    outputValue[strrev(a)] === x && 
+    outputValue[x+x] === y) {
+}
+NNCB
+ C  B  H
+NCNBCCHB
+
+NNCB -> NN NC CB
+
+
+  NC   CN    NB     BC   CH    HB 
+NB BC CC CN NB BB BB CB CB HB HC CH
+
+const pairs = {}
+const uniqueCombos = Object.keys(input[1]).filter((v, i, s) => s.indexOf((v) === i))
+while(Object.keys(pairs).length < uniqueCombos.length) {
+    for (let i = 0; i < uniqueCombos.length; i++) {
+        let pairKey = uniqueCombos[i]
+        pairs[pairKey] = [pairKey[0]+input[1][pairKey], input[1][pairKey]+pairKey[1]]
+    }
+}
+
+const count = {}
+for (let i = 0; i < input[0].length-1; i++) {
+    count[input[i]+input[i+1]] = 1
+}
+
+for (let i = 0; i < Object.keys(count).length; i++) {
+   const pairKey = Object.keys(count)[i]
+   const [pairA, pairB] = pairs[pairKey]
+   const pairCount = count[pairKey];
+   count[pairA] += pairCount
+   count[pairB] += pairCount
+   count[pairKey] -= pairCount;
+}
+
+{
+  CH: 0,
+  HH: 0,
+  CB: 2,
+  NH: 0,
+  HB: 0,
+  HC: 1,
+  HN: 0,
+  NN: 0,
+  BH: 1,
+  NC: 0,
+  NB: 2,
+  BN: 0,
+  BB: (2*2),
+  BC: 2,
+  CC: 1,
+  CN: 1
+}
+//count
+{ B: 11, N: 3, H: 2, C: 8 }
+=>
+
+H
+NN
+BBBBBB
+CCCC
+
+H
+NN
+BBBBBB
+CCCC
+6
+
+NB
+BC
+CC
+CN
+NB
+BB
+BB
+BC
+CB
+BH
+HC
+CB
+6=11-(7-(4/2))
+4=8-(6-2)
+
+{ B: (11/2)+1, N: (3/2)+1, H: (2/2), C: 8/2}
+-UNIQUE(combos, letter)-1
+UNIQUECOMBOS()
+
+
+NBB <-
+      BB <-
+       |   BC <-
+       |         BB
+      NB <-
+            NN
+            NC
+NC
+  <-
+    NN
+
+CH
+  <-
+    CB
+
+NC ->
+  NB
+
+
+NN -> B
+
+NC -> C
+
+
+NB -> 
+
+NBB 
+N B B
+ B N
+
+NBBNB
+
+NBBNB
+ B N B B
+
+NBBNBBNBB
+N B B N B B N B B
+ B N B B N B B N 
+
+NBBNBBNBBNBBNBBNB
